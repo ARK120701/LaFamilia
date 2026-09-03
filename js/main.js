@@ -55,6 +55,14 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* Delayed reveal — appears on a timer after page load, not on scroll */
+  var delayedEls = document.querySelectorAll('.delayed-reveal');
+  if (delayedEls.length) {
+    setTimeout(function () {
+      delayedEls.forEach(function (el) { el.classList.add('in'); });
+    }, 1500);
+  }
+
   var galleryItems = document.querySelectorAll('.gallery-item');
 
   /* Gallery lightbox */
