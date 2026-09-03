@@ -157,4 +157,101 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Scroll progress bar */
+  var progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+  var onProgressScroll = function () {
+    var docEl = document.documentElement;
+    var scrollable = docEl.scrollHeight - docEl.clientHeight;
+    var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  };
+  window.addEventListener('scroll', onProgressScroll, { passive: true });
+  onProgressScroll();
+
+  /* Back to top button */
+  var backToTop = document.createElement('button');
+  backToTop.className = 'back-to-top';
+  backToTop.setAttribute('aria-label', 'Back to top');
+  backToTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(backToTop);
+  var onBackToTopScroll = function () {
+    if (window.scrollY > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  };
+  window.addEventListener('scroll', onBackToTopScroll, { passive: true });
+  onBackToTopScroll();
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+
+  /* Button click ripple */
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.6;
+      var ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function () { ripple.remove(); }, 650);
+    });
+  });
+
+  /* Animated stat counters */
+  var statEls = document.querySelectorAll('.stat strong, .accent-card strong');
+  if (statEls.length) {
+    var animateCounter = function (el) {
+      var text = el.textContent.trim();
+      var match = text.match(/^(\d+)(.*)$/);
+      if (!match || text.indexOf(':') !== -1) return;
+      var target = parseInt(match[1], 10);
+      var suffix = match[2];
+      if (prefersReducedMotion) return;
+      var duration = 1200;
+      var start = null;
+      var step = function (ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(step);
+    };
+    if ('IntersectionObserver' in window) {
+      var statObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      statEls.forEach(function (el) { statObserver.observe(el); });
+    }
+  }
+
+  /* 3D tilt on hover for service/value cards */
+  if (!prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.service-card, .value-card').forEach(function (card) {
+      card.classList.add('tilt');
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'translateY(-6px) perspective(800px) rotateX(' + (y * -8) + 'deg) rotateY(' + (x * 8) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+      });
+    });
+  }
+
 });
