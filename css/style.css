@@ -696,17 +696,19 @@ section { padding: 84px 0; }
 
 /* ---------- Insurance logos ---------- */
 .insurance-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.insurance-logo-tile { aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-sm); }
-.insurance-logo-tile .photo-placeholder { min-height: 0; height: 100%; align-items: center; justify-content: center; padding: 16px; }
-.insurance-logo-tile .photo-placeholder span {
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 700;
-  font-size: 0.86rem;
-  text-align: center;
+.insurance-logo-tile {
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius-sm);
-  color: var(--green-dark);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
 }
+.insurance-logo-tile img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--green-dark); color: #d9e6da; padding: 70px 0 0; }

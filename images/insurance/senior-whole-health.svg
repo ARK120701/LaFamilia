@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <style>
+      .logo-green { fill: #4a7c59; }
+      .logo-text { fill: #4a7c59; font-family: Arial, sans-serif; font-weight: bold; }
+      .logo-text-large { font-size: 28px; }
+      .logo-text-small { font-size: 12px; font-weight: normal; letter-spacing: 2px; }
+      .logo-letter { fill: white; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Three green squares with letters -->
+  <rect x="105" y="50" width="50" height="50" class="logo-green"/>
+  <rect x="160" y="50" width="50" height="50" class="logo-green"/>
+  <rect x="215" y="50" width="50" height="50" class="logo-green"/>
+  
+  <!-- Letters in squares -->
+  <text x="130" y="88" text-anchor="middle" class="logo-letter">S</text>
+  <text x="185" y="88" text-anchor="middle" class="logo-letter">W</text>
+  <text x="240" y="88" text-anchor="middle" class="logo-letter">H</text>
+  
+  <!-- Main text -->
+  <text x="40" y="140" class="logo-text logo-text-large">Senior Whole Health.</text>
+  
+  <!-- Subtitle -->
+  <text x="98" y="165" class="logo-text logo-text-small">BY MOLINA HEALTHCARE</text>
+</svg>
