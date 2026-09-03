@@ -77,10 +77,16 @@ document.addEventListener('DOMContentLoaded', function () {
   var lightbox = document.querySelector('.lightbox');
   if (lightbox) {
     var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    var lightboxImg = lightbox.querySelector('.lightbox-img');
     galleryItems.forEach(function (item) {
       item.addEventListener('click', function () {
         var caption = item.getAttribute('data-caption') || '';
+        var img = item.querySelector('img');
         if (lightboxCaption) lightboxCaption.textContent = caption;
+        if (lightboxImg && img) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+        }
         lightbox.classList.add('open');
       });
     });
