@@ -17,7 +17,26 @@ document.addEventListener('DOMContentLoaded', function () {
     var href = link.getAttribute('href');
     if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
+      var parentDropdown = link.closest('.has-dropdown');
+      if (parentDropdown) parentDropdown.classList.add('dropdown-active');
     }
+  });
+
+  /* Dropdown nav toggling (Our Services / Resources) */
+  document.querySelectorAll('.dropdown-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var parent = btn.closest('.has-dropdown');
+      if (!mainNav.classList.contains('mobile-open')) return;
+      var wasOpen = parent.classList.contains('open');
+      document.querySelectorAll('.has-dropdown').forEach(function (li) {
+        li.classList.remove('open');
+        li.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        parent.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
   });
 
   /* Scroll reveal */
