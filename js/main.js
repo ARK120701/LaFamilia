@@ -55,23 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* Gallery filtering */
-  var filterBtns = document.querySelectorAll('.filter-btn');
   var galleryItems = document.querySelectorAll('.gallery-item');
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var filter = btn.getAttribute('data-filter');
-      galleryItems.forEach(function (item) {
-        if (filter === 'all' || item.getAttribute('data-cat') === filter) {
-          item.classList.remove('hide');
-        } else {
-          item.classList.add('hide');
-        }
-      });
-    });
-  });
 
   /* Gallery lightbox */
   var lightbox = document.querySelector('.lightbox');

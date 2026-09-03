@@ -486,20 +486,6 @@ section { padding: 84px 0; }
 .testimonial-author span { font-size: 0.8rem; color: var(--ink-light); }
 
 /* ---------- Gallery ---------- */
-.gallery-filters { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
-.filter-btn {
-  padding: 9px 20px;
-  border-radius: 999px;
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  font-weight: 600;
-  font-size: 0.88rem;
-  cursor: pointer;
-  color: var(--ink);
-  transition: all 0.15s ease;
-}
-.filter-btn:hover { border-color: var(--gold); }
-.filter-btn.active { background: var(--green); border-color: var(--green); color: var(--white); }
 
 .gallery-grid {
   display: grid;
@@ -525,8 +511,6 @@ section { padding: 84px 0; }
   transition: opacity 0.2s ease;
 }
 .gallery-item:hover::after { opacity: 1; }
-.gallery-item[data-cat] { display: block; }
-.gallery-item.hide { display: none; }
 
 /* Lightbox */
 .lightbox {
