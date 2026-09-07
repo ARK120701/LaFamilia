@@ -217,6 +217,27 @@ p { color: var(--ink-light); }
 /* Social icons hidden for now */
 .topbar-social, .footer-social { display: none; }
 
+.topbar-lang { display: flex; align-items: center; }
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid rgba(243, 234, 208, 0.5);
+  color: #f3ead0;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.lang-toggle:hover, .lang-toggle:focus-visible {
+  background: rgba(243, 234, 208, 0.15);
+  border-color: #f3ead0;
+}
+
 /* ---------- Header ---------- */
 .site-header {
   background: var(--white);

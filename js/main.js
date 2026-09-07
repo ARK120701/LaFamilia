@@ -2,6 +2,36 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* Language toggle (English / Español) */
+  var LANG_KEY = 'lf-lang';
+  var langToggleBtn = document.getElementById('lang-toggle');
+
+  var applyLanguage = function (lang) {
+    document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+    document.querySelectorAll('[data-es]').forEach(function (el) {
+      if (lang === 'es') {
+        if (el.dataset.original === undefined) el.dataset.original = el.innerHTML;
+        el.innerHTML = el.dataset.es;
+      } else if (el.dataset.original !== undefined) {
+        el.innerHTML = el.dataset.original;
+      }
+    });
+    if (langToggleBtn) {
+      langToggleBtn.innerHTML = lang === 'es' ? '🌐 English' : '🌐 Español';
+      langToggleBtn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Switch to Spanish');
+    }
+  };
+
+  applyLanguage(localStorage.getItem(LANG_KEY) || 'en');
+
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', function () {
+      var next = document.documentElement.lang === 'es' ? 'en' : 'es';
+      localStorage.setItem(LANG_KEY, next);
+      applyLanguage(next);
+    });
+  }
+
   /* Mobile nav toggle */
   var navToggle = document.querySelector('.nav-toggle');
   var mainNav = document.querySelector('.main-nav');
