@@ -217,25 +217,24 @@ p { color: var(--ink-light); }
 /* Social icons hidden for now */
 .topbar-social, .footer-social { display: none; }
 
-.topbar-lang { display: flex; align-items: center; }
 .lang-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   background: transparent;
-  border: 1px solid rgba(243, 234, 208, 0.5);
-  color: #f3ead0;
+  border: 1.5px solid var(--green);
+  color: var(--green);
   font-family: inherit;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 3px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 16px;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .lang-toggle:hover, .lang-toggle:focus-visible {
-  background: rgba(243, 234, 208, 0.15);
-  border-color: #f3ead0;
+  background: var(--green);
+  color: var(--white);
 }
 
 /* ---------- Header ---------- */
@@ -978,6 +977,8 @@ body.page-leaving { opacity: 0; transition: opacity 0.2s ease; }
 @media (max-width: 760px) {
   .topbar .container { justify-content: center; text-align: center; }
   .header-cta .btn-green span.btn-text { display: none; }
+  .header-cta .lang-toggle .lang-label { display: none; }
+  .header-cta .lang-toggle { padding: 9px 11px; }
   .about-points { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }

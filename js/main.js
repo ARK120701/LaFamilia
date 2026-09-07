@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Language toggle (English / Español) */
   var LANG_KEY = 'lf-lang';
   var langToggleBtn = document.getElementById('lang-toggle');
+  var langLabel = langToggleBtn ? langToggleBtn.querySelector('.lang-label') : null;
 
   var applyLanguage = function (lang) {
     document.documentElement.lang = lang === 'es' ? 'es' : 'en';
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
     if (langToggleBtn) {
-      langToggleBtn.innerHTML = lang === 'es' ? '🌐 English' : '🌐 Español';
+      if (langLabel) langLabel.textContent = lang === 'es' ? 'English' : 'Español';
       langToggleBtn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Switch to Spanish');
     }
   };
