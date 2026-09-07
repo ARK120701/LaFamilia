@@ -774,14 +774,6 @@ section { padding: 84px 0; }
 }
 .form-success.show { display: block; }
 
-.map-placeholder {
-  margin-top: 40px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-.map-placeholder .photo-placeholder { min-height: 320px; border-radius: var(--radius); }
-
 /* ---------- FAQ ---------- */
 .faq-list { max-width: 780px; margin: 0 auto; }
 .faq-item {
