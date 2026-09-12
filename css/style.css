@@ -225,6 +225,7 @@ p { color: var(--ink-light); }
 .logo { display: flex; align-items: center; }
 .logo-img { height: 70px; width: auto; display: block; flex-shrink: 0; transition: transform 0.35s ease; }
 .logo:hover .logo-img { transform: scale(1.06) rotate(-2deg); }
+.site-header .logo { margin-left: -12px; }
 .footer-brand .logo {
   display: inline-flex;
   background: var(--cream);
